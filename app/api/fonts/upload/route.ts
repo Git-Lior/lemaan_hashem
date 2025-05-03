@@ -33,16 +33,19 @@ export async function POST(req: Request) {
       if (glyph && glyph.index !== 0) {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          throw new Error('Failed to create canvas context');
+        }
         const scale = 50;
         
-        canvas.width = glyph.advanceWidth * scale;
+        canvas.width = glyph.advanceWidth! * scale;
         canvas.height = (font.ascender - font.descender) * scale;
         
         ctx.scale(scale, -scale);
         ctx.translate(0, -font.ascender);
         
-        const path = glyph.getPath(0, 0, font.unitsPerEm);
-        path.draw(ctx);
+        const glyphPath = glyph.getPath(0, 0, font.unitsPerEm);
+        glyphPath.draw(ctx);
         
         const imageData = canvas.toDataURL('image/png');
         const base64Data = imageData.replace(/^data:image\/png;base64,/, '');
