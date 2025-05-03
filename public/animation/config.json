@@ -1,0 +1,6 @@
+{
+  "speed": 1000,
+  "percentReplaced": 50,
+  "blocksPerLetter": 4,
+  "transitionEffect": "fade"
+}
