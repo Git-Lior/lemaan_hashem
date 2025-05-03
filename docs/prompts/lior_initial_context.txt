@@ -1,0 +1,18 @@
+This project will be used in a cultural exhibition in Israel. For context, when the jewish community immigrated to Israel, many families had to change their surname to sound more "Israeli" / "hebrew". This act is called "Hebraization of surnames".
+
+The idea for this project is to be an interactive experience - the Client will supply their surname and origin, we will suggest different possibilities for the original surname (or they will supply it explicitly), and then we will render their original surname with a mix of different fonts spliced together - a "standard" Hebrew block font combined with a stylized Hebrew font that resembles their culture of origin - Arabic, Eastern European, African etc. The combination will be made by randomly "breaking" sections of each block letter and replacing them with sections of the stylized font. Ideally this will be an animation that will be displayed to the Client when he submits the information - the surname will be written in the stylized "original" font and then sections of letters will be randomly broken one by one and replaced with the "standard" font.
+
+This project will be used by two types of customers:
+* The Designer - supplies the base and stylized fonts and tags them based on the culture of origin they resemble. Makes sure that the font letters are aligned and configures different aspects of the "breaking" effect. All of this happens before the exhibition.
+* The Client - during the exhibition, reads the background about the project and uses the interactive application by supplying information as described above. When the Client is done, the information will be reset for the next Client.
+
+The project should support the following screens:
+* Font management - before the exhibition, the Designer will use this screen to upload an image for each font and tag it. This screen will contain tools to delete uploaded fonts, change tagging, and make sure that the stylized fonts are aligned with the base font - trying out different letters and mixing configurations.
+* Animation management - before the exhibition, the Designer will use this page to configure the animation. The configuration options are - block replacing speed, percent of blocks replaced, number of blocks per letter and more if necessary.
+* Exhibition screen - this screen will be presented in the exhibition, and will use the data and configurations supplied by the Designer. The screen will contain the information about the exhibition, and the interactive application - the Client will supply the info as described, and will see an animation of their original surname being replaced piece by piece.
+
+Implementation notes:
+* The web app should have different routes (one for each screen).
+* There should be an "exhibition" mode which is controlled by a button. When clicked, it locks the app on the exhibition screen, and the only way to get back is to press "ctrl" three times in quick succession.
+* Design for simplicity - this is only a demo and not a production app, and will only be used in a single computer. Maintainability is not an issue, and features should be implemented with that in mind - no user management, refresh loses everything, only font database and Designer configurations should persist. Use local storage for client side persistence if necessary, and file system for server-side persistence - json files, font images.
+* There should be a basic server which stores the font images and designer configurations and supplies them on app load. When the information is saved in each Designer screen, the data should be updated in the server.
